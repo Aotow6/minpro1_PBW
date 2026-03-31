@@ -1,3 +1,8 @@
+<?php
+include 'conn.php';
+$query = $conn->query("SELECT * FROM profil WHERE id = 1");
+$profil = $query->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -141,11 +146,13 @@
         createApp({
             data() {
                 return {
-                    inisial: 'MYBIO.',
-                    namaLengkap: 'Satria Rajawali',
-                    peran: 'Up and Coming Fullstack Developer',
-                    deskripsiSingkat: 'Saya Programer Sigma Penyuka Whip Pink dan Roblox. Saya merangkai antarmuka interaktif yang indah di frontend, dan membangun arsitektur sistem backend yang tak tertembus menggunakan Laravel serta ekosistem Java.',
-                    profileImg: '../assets/pp.jpeg',
+                    // Data profil yang diambil dari database
+                    inisial: '<?= $profil["inisial"] ?>',
+                    namaLengkap: '<?= $profil["nama_lengkap"] ?>',
+                    peran: '<?= $profil["peran"] ?>',
+                    deskripsiSingkat: '<?= $profil["deskripsi_singkat"] ?>',
+                    profileImg: '<?= $profil["profile_img"] ?>',
+                    
                     pengalaman: [
                         { posisi: 'Aplikasi SEAMantau', waktu: 'Tugas Akhir', detail: 'Mengembangkan aplikasi java berbasis dekstop dengan API GDrive dalam Upaya pelaksanaan SDG 14.' },
                         { posisi: 'Perancangan Toplogi untuk Politeknik Negeri Surabaya', waktu: 'Project Cisco', detail: 'Merancang Topologi untuk Polnes Maritim di Surabaya menggunakan Cisco Packet Tracer.' }
